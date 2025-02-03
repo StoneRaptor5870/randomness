@@ -1,0 +1,32 @@
+{
+  "name": "random",
+  "version": "1.0.0",
+  "description": "random full stack project",
+  "author": "nischay",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "format": "prettier  \"{apps,libs}/**/*.{ts,tsx,js,json}\" --ignore-path .gitignore",
+    "format:check": "yarn format --check",
+    "format:write": "yarn format --write",
+    "tsc": "yarn nx run-many -t tsc",
+    "lint": "yarn nx run-many -t lint",
+    "build": "yarn nx run-many -t build",
+    "validate": "yarn format:write && yarn tsc && yarn lint && yarn build",
+    "postinstall": "husky",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable"
+  },
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "libs/*"
+    ]
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "nx": "20.4.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3"
+  }
+}
