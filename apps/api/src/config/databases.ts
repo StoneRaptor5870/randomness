@@ -37,10 +37,10 @@ class PostgresConn {
     }
   }
 
-  async runQuery<T>(query: string): Promise<T[]> {
+  async runQuery<T>(query: string, values: any[] = []): Promise<T[]> {
     const client = await this.getConnectionFromPool()
     try {
-      const result = await client.query(query)
+      const result = await client.query(query, values)
       return result.rows
     } catch (err: any) {
       err._query = query
